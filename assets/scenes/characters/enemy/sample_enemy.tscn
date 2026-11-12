@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://du51jidmf7mh"]
+
+[ext_resource type="Texture2D" uid="uid://c1tcul17vvmyr" path="res://icon.svg" id="1_1ca37"]
+[ext_resource type="Script" uid="uid://bov1xevt0dn6s" path="res://assets/scripts/characters/enemy/sample_enemy.gd" id="1_h44rq"]
+[ext_resource type="PackedScene" uid="uid://b4jld414kawv1" path="res://assets/scenes/characters/utilities/char_life.tscn" id="3_bgqm6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8h7bn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h44rq"]
+radius = 138.03261
+
+[node name="SampleEnemy" type="CharacterBody2D" unique_id=1152344676]
+collision_layer = 3
+collision_mask = 7
+script = ExtResource("1_h44rq")
+
+[node name="HitTimer" type="Timer" parent="." unique_id=577997550]
+wait_time = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=499759806]
+position = Vector2(-1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.15625, 0.234375)
+texture = ExtResource("1_1ca37")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1120711084]
+shape = SubResource("CapsuleShape2D_8h7bn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1562552032]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=465725703]
+shape = SubResource("CircleShape2D_h44rq")
+
+[node name="CharLife" parent="." unique_id=1393140278 node_paths=PackedStringArray("CHAR") instance=ExtResource("3_bgqm6")]
+CHAR = NodePath("..")
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_character_entered"]

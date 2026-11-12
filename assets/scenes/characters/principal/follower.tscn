@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ddwy1ds6aqh2x"]
+
+[ext_resource type="Script" uid="uid://db18i0wy25eus" path="res://assets/scripts/characters/principal/follower.gd" id="1_semi2"]
+[ext_resource type="Texture2D" uid="uid://c1tcul17vvmyr" path="res://icon.svg" id="2_0g550"]
+[ext_resource type="PackedScene" uid="uid://b4jld414kawv1" path="res://assets/scenes/characters/utilities/char_life.tscn" id="3_xbuci"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bnjbq"]
+
+[node name="Follower" type="CharacterBody2D" unique_id=1505951078]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_semi2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1289570987]
+position = Vector2(-5.684342e-14, -0.12499946)
+scale = Vector2(0.140625, 0.23242188)
+texture = ExtResource("2_0g550")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51495268]
+shape = SubResource("CapsuleShape2D_bnjbq")
+
+[node name="CharLife" parent="." unique_id=1393140278 node_paths=PackedStringArray("CHAR") instance=ExtResource("3_xbuci")]
+CHAR = NodePath("..")

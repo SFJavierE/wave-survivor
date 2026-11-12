@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c3vxqsmkf64eo"]
+
+[ext_resource type="PackedScene" uid="uid://cqhvf4sl4opaj" path="res://assets/scenes/characters/principal/player.tscn" id="1_uub35"]
+[ext_resource type="PackedScene" uid="uid://fxi1g5iofwmn" path="res://assets/scenes/managers/charspawner.tscn" id="2_eicm5"]
+[ext_resource type="PackedScene" uid="uid://du51jidmf7mh" path="res://assets/scenes/characters/enemy/sample_enemy.tscn" id="3_jss2q"]
+[ext_resource type="PackedScene" uid="uid://ddwy1ds6aqh2x" path="res://assets/scenes/characters/principal/follower.tscn" id="4_mn1b0"]
+[ext_resource type="PackedScene" uid="uid://dpv5gjrjgqvf4" path="res://assets/scenes/managers/pool_char.tscn" id="5_eicm5"]
+
+[node name="TestFollowingScene" type="Node2D" unique_id=1613623401]
+
+[node name="Player" parent="." unique_id=901694903 instance=ExtResource("1_uub35")]
+position = Vector2(152, 252)
+
+[node name="EnemySpawner" parent="." unique_id=758992041 node_paths=PackedStringArray("player", "pool") instance=ExtResource("2_eicm5")]
+follow_player = true
+player = NodePath("../Player")
+char_to_spawn = ExtResource("3_jss2q")
+spawn_buffer = 200.0
+pool = NodePath("../PoolEnemies")
+
+[node name="FollowerSpawner" parent="." unique_id=1933843166 node_paths=PackedStringArray("player", "pool") instance=ExtResource("2_eicm5")]
+player = NodePath("../Player")
+char_to_spawn = ExtResource("4_mn1b0")
+time_to_spawn = 10.0
+spawn_buffer = 200.0
+pool = NodePath("../PoolFollowers")
+
+[node name="PoolEnemies" parent="." unique_id=184071942 instance=ExtResource("5_eicm5")]
+
+[node name="PoolFollowers" parent="." unique_id=1948281119 instance=ExtResource("5_eicm5")]

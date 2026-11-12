@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dpv5gjrjgqvf4"]
+
+[ext_resource type="Script" uid="uid://gen513bsjb60" path="res://assets/scripts/managers/pool_char.gd" id="1_e7lg0"]
+
+[node name="PoolChar" type="Node2D" unique_id=184071942]
+script = ExtResource("1_e7lg0")
