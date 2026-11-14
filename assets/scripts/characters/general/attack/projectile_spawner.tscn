@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brxcgs05yudvg"]
+
+[ext_resource type="Script" uid="uid://c0pfqcs3kuiij" path="res://assets/scripts/characters/general/attack/projectile_spawner.gd" id="1_56rov"]
+
+[node name="ProjectileSpawner" type="Node2D" unique_id=1361434951]
+script = ExtResource("1_56rov")
