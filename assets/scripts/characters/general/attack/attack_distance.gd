@@ -8,14 +8,15 @@ var enemy_to_shoot : CharacterBody2D = null
 
 var can_shoot : bool = true
 
-signal fire_projectile(_char : CharacterBody2D)
+signal fire_projectile(shoot_point : Node2D)
 
 func _process(_delta: float) -> void:
 	if enemy_to_shoot and can_shoot:
 		print("fire")
 		can_shoot = false
 		fire_rate.start(rate_fire)
-		fire_projectile.emit($"..")
+		look_at(enemy_to_shoot.global_position)
+		fire_projectile.emit($".")
 
 func reset_enemy(_char : CharacterBody2D) -> void:
 	var char_life = _char.get_node_or_null("Life")
