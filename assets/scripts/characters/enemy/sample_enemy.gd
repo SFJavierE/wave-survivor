@@ -14,15 +14,16 @@ enum EnemyStates
 const SPEED = 120.0
 const DISTANCE_TO_STOP = 20.0
 
-var playerc : PlayerC = null
+var player : player_ = null
 var follower_to_kill : CharacterBody2D = null
+
 var enemy_state : EnemyStates = EnemyStates.Idle
 
-func SetPlayer(player : PlayerC) -> void:
-	playerc = player
+func set_player(_player : player_) -> void:
+	player = _player
 
 func _physics_process(_delta: float) -> void:
-	var follow : CharacterBody2D = playerc
+	var follow : CharacterBody2D = player
 	if follower_to_kill:
 		follow = follower_to_kill
 	var distance = global_position - follow.global_position
@@ -31,34 +32,34 @@ func _physics_process(_delta: float) -> void:
 		var colision := move_and_collide(direction * SPEED * _delta)
 		if colision:
 			var collider := colision.get_collider()
-			var life_component = collider.get_node_or_null("CharLife")
+			var life_component = collider.get_node_or_null("Life")
 			if collider is not Enemy and life_component and collider == follow:
 				if enemy_state == EnemyStates.WaitToHit:
 					return
 				else:
 					enemy_state = EnemyStates.WaitToHit
-					life_component.GetDamage(2)
+					life_component.get_damage(2)
 					hit_timer.start()
 	else:
 		velocity = Vector2.ZERO
 
-func ResetFollow(char : CharacterBody2D) -> void:
-	var char_life = char.get_node_or_null("CharLife")
+func reset_follow(_char : CharacterBody2D) -> void:
+	var char_life = _char.get_node_or_null("Life")
 	if char_life:
-		char_life.CharLifeZero.disconnect(ResetFollow)
+		char_life.is_dead.disconnect(reset_follow)
 	follower_to_kill = null
 
 
-func _on_area_character_entered(char: Node2D) -> void:
-	if char is not Enemy:
-		if char is PlayerFollower:
-			if char != follower_to_kill:
-				follower_to_kill = char
-				var char_life = char.get_node_or_null("CharLife")
+func _on_area_character_entered(_body: Node2D) -> void:
+	if _body is not Enemy:
+		if _body is follower_:
+			if _body != follower_to_kill:
+				follower_to_kill = _body
+				var char_life = _body.get_node_or_null("Life")
 				if char_life:
-					if char_life.CharLifeZero.is_connected(ResetFollow):
+					if char_life.is_dead.is_connected(reset_follow):
 						return
-					char_life.CharLifeZero.connect(ResetFollow)
+					char_life.is_dead.connect(reset_follow)
 
 
 func _on_hit_timer_timeout() -> void:

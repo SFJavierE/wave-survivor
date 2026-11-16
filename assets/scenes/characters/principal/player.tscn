@@ -28,7 +28,6 @@ shape = SubResource("CircleShape2D_bnjbq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=792836607]
 
-[node name="CharLife" parent="." unique_id=1393140278 node_paths=PackedStringArray("CHAR") instance=ExtResource("3_78bfu")]
-CHAR = NodePath("..")
+[node name="Life" parent="." unique_id=1393140278 instance=ExtResource("3_78bfu")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

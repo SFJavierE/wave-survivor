@@ -6,9 +6,6 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bnjbq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bnjbq"]
-radius = 196.2371
-
 [node name="Follower" type="CharacterBody2D" unique_id=1505951078]
 collision_layer = 5
 collision_mask = 5
@@ -22,12 +19,4 @@ texture = ExtResource("2_0g550")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51495268]
 shape = SubResource("CapsuleShape2D_bnjbq")
 
-[node name="CharLife" parent="." unique_id=1393140278 node_paths=PackedStringArray("CHAR") instance=ExtResource("3_xbuci")]
-CHAR = NodePath("..")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1440029845]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=150936199]
-shape = SubResource("CircleShape2D_bnjbq")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_enemy_entered"]
+[node name="Life" parent="." unique_id=1393140278 instance=ExtResource("3_xbuci")]

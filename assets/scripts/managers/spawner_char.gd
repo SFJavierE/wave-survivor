@@ -1,22 +1,22 @@
-class_name SpawnerChar
+class_name spawnercharacters
 
 extends Node2D
 
 @export var follow_player : bool = false
-@export var player : PlayerC = null
+@export var player : player_ = null
 
 @export var char_to_spawn : PackedScene = null
 
 @export var time_to_spawn : float = 5
 @export var limit_to_spawn : int = 100
-@onready var spawner_timer: Timer = $SpawnerTimer
+@onready var SPAWNER_TIMER: Timer = $SpawnerTimer
 
 @export var spawn_buffer: float = 100.0
 
-@export var pool : PoolChar = null
+@export var pool : pool_ = null
 
 func _ready() -> void:
-	spawner_timer.start(time_to_spawn)
+	SPAWNER_TIMER.start(time_to_spawn)
 
 func spawn_char() -> void:
 	if not is_instance_valid(player) or not char_to_spawn:
@@ -47,20 +47,20 @@ func spawn_char() -> void:
 
 	var char_instant : CharacterBody2D
 
-	if pool.DisableCharHasElements():
-		char_instant = pool.ReturnChar()
+	if pool.has_disabled_character():
+		char_instant = pool.restore_character()
 		char_instant.global_position = spawn_pos
-		pool.AddCharToPool(char_instant)
+		pool.add_to_pool(char_instant)
 		char_instant.set_process(true)
 	else:
 		char_instant = char_to_spawn.instantiate() as CharacterBody2D
 		char_instant.global_position = spawn_pos
 		
 		get_parent().add_child(char_instant)
-		pool.AddCharToPool(char_instant)
+		pool.add_to_pool(char_instant)
 
 	if follow_player:
-		char_instant.SetPlayer(player)
+		char_instant.set_player(player)
 
 func _on_spawner_timer_timeout() -> void:
 	spawn_char()

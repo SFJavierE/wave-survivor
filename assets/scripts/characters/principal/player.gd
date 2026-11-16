@@ -1,14 +1,13 @@
-class_name PlayerC
+class_name player_
 extends CharacterBody2D
 
-@onready var player: PlayerC = $"."
-@onready var area: Area2D = $Area2D
-@export var SPEED : float = 200.0
+@onready var PLAYER: player_ = $"."
+@export var speed : float = 200.0
 
-var FollowerM : FollowerManager
+var followers_manager : followersmanager
 
 func _ready() -> void:
-	FollowerM = FollowerManager.new()
+	followers_manager = followersmanager.new()
 
 func _physics_process(_delta: float) -> void:
 	var direction_x = Input.get_axis("left", "right")
@@ -16,13 +15,13 @@ func _physics_process(_delta: float) -> void:
 
 	var direction = Vector2(direction_x, direction_y)
 	if direction != Vector2.ZERO:
-		velocity = direction * SPEED
-		FollowerM.UpdateFollowerPosition(player)
+		velocity = direction * speed
+		followers_manager.update_followers_positions(PLAYER)
 	else:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
 
-func _on_area_body_entered(char: Node2D) -> void:
-	if char is PlayerFollower:
-		FollowerM.AddFollower(char)
+func _on_area_body_entered(body_: Node2D) -> void:
+	if body_ is follower_:
+		followers_manager.add_follower(body_)

@@ -1,8 +1,9 @@
-class_name ProjectileSpawner
+class_name projectilespawner
 extends Node2D
 
 const PROJECTILE = preload("uid://d35c3vgvjv13v")
-@export var pool : PoolChar = null
+@export var player : player_
+@export var pool : pool_ = null
 
 func update_position_projectile(projectile : Projectile, char : CharacterBody2D, come_from_pool: bool) -> void:
 	projectile.DIR = char.rotation
