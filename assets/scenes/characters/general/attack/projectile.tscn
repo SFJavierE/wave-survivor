@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://d3esls5ovtph8" path="res://assets/scripts/characters/general/attack/projectile.gd" id="1_a4yw7"]
 [ext_resource type="Texture2D" uid="uid://c1tcul17vvmyr" path="res://icon.svg" id="1_t180m"]
+[ext_resource type="PackedScene" uid="uid://b4jld414kawv1" path="res://assets/scenes/characters/utilities/char_life.tscn" id="3_78g78"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnjbq"]
+radius = 9.0
 
-[node name="Projectile" type="CharacterBody2D" unique_id=1158321179]
+[node name="Projectile" type="CharacterBody2D" unique_id=1158321179 node_paths=PackedStringArray("life")]
 script = ExtResource("1_a4yw7")
+life = NodePath("Life")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1907439936]
 position = Vector2(-1.1920929e-07, 0.49999827)
@@ -15,3 +18,10 @@ texture = ExtResource("1_t180m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1152511324]
 shape = SubResource("CircleShape2D_bnjbq")
+
+[node name="Life" parent="." unique_id=1393140278 instance=ExtResource("3_78g78")]
+total_life = 1.0
+
+[node name="ProjectileLife" type="Timer" parent="." unique_id=1639179381]
+
+[connection signal="timeout" from="ProjectileLife" to="." method="_on_projectile_life_timeout"]

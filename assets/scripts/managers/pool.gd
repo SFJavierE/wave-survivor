@@ -17,7 +17,6 @@ func add_to_pool(_char : CharacterBody2D) -> void:
 		char_life.is_dead.connect(disable_character)
 
 func disable_character(_char : CharacterBody2D) -> void:
-	print("disable")
 	enables.erase(_char)
 	if disables.has(_char):
 		return

@@ -12,7 +12,6 @@ signal fire_projectile(shoot_point : Node2D)
 
 func _process(_delta: float) -> void:
 	if enemy_to_shoot and can_shoot:
-		print("fire")
 		can_shoot = false
 		fire_rate.start(rate_fire)
 		look_at(enemy_to_shoot.global_position)

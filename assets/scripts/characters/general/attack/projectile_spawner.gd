@@ -20,7 +20,7 @@ func update_position_projectile(_projectile : Projectile, shoot_point : Node2D, 
 func fire(shoot_point : Node2D) -> void:
 	var projectile : Projectile
 	if pool.has_disabled_list():
-		projectile = pool.ReturnChar()
+		projectile = pool.restore_character()
 		if projectile is Projectile:
 			update_position_projectile(projectile, shoot_point, true)
 			pool.add_to_pool(projectile)
