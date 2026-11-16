@@ -47,7 +47,7 @@ func spawn_char() -> void:
 
 	var char_instant : CharacterBody2D
 
-	if pool.has_disabled_character():
+	if pool.has_disabled_list():
 		char_instant = pool.restore_character()
 		char_instant.global_position = spawn_pos
 		pool.add_to_pool(char_instant)

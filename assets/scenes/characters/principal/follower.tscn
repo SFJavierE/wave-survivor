@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://db18i0wy25eus" path="res://assets/scripts/characters/principal/follower.gd" id="1_semi2"]
 [ext_resource type="Texture2D" uid="uid://c1tcul17vvmyr" path="res://icon.svg" id="2_0g550"]
 [ext_resource type="PackedScene" uid="uid://b4jld414kawv1" path="res://assets/scenes/characters/utilities/char_life.tscn" id="3_xbuci"]
+[ext_resource type="PackedScene" uid="uid://b1ij842n1tber" path="res://assets/scenes/characters/general/attack/attack_distance.tscn" id="4_osasf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bnjbq"]
 
@@ -20,3 +21,5 @@ texture = ExtResource("2_0g550")
 shape = SubResource("CapsuleShape2D_bnjbq")
 
 [node name="Life" parent="." unique_id=1393140278 instance=ExtResource("3_xbuci")]
+
+[node name="Attackdistance" parent="." unique_id=93097034 instance=ExtResource("4_osasf")]

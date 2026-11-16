@@ -3,16 +3,19 @@
 [ext_resource type="Script" uid="uid://derdiijdmpp26" path="res://assets/scripts/characters/general/attack/attack_distance.gd" id="1_1aggf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnjbq"]
-radius = 130.18832
+radius = 694.01154
 
-[node name="attack_distance" type="Node2D" unique_id=93097034]
+[node name="Attackdistance" type="Node2D" unique_id=93097034]
 script = ExtResource("1_1aggf")
 
 [node name="fire_rate" type="Timer" parent="." unique_id=984455200]
 
 [node name="attack_area" type="Area2D" parent="." unique_id=900108229]
+collision_layer = 7
+collision_mask = 7
 
 [node name="collision" type="CollisionShape2D" parent="attack_area" unique_id=714147438]
 shape = SubResource("CircleShape2D_bnjbq")
 
+[connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_enemy_entered"]

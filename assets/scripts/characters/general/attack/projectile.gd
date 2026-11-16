@@ -4,7 +4,7 @@ extends CharacterBody2D
 var POS:Vector2
 var ROT:float
 var DIR: float
-var SPEED: float = 2000
+var SPEED: float = 200
 
 func _ready() -> void:
 	spawn()

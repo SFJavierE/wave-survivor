@@ -26,7 +26,7 @@ func disable_character(_char : CharacterBody2D) -> void:
 	_char.visible = false
 	_char.process_mode = Node.PROCESS_MODE_DISABLED
 
-func has_disabled_character() -> bool:
+func has_disabled_list() -> bool:
 	return !disables.is_empty()
 	
 func restore_character() -> CharacterBody2D:

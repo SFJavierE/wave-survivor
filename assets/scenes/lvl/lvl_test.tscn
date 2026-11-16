@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://fxi1g5iofwmn" path="res://assets/scenes/managers/charspawner.tscn" id="2_eicm5"]
 [ext_resource type="PackedScene" uid="uid://du51jidmf7mh" path="res://assets/scenes/characters/enemy/sample_enemy.tscn" id="3_jss2q"]
 [ext_resource type="PackedScene" uid="uid://ddwy1ds6aqh2x" path="res://assets/scenes/characters/principal/follower.tscn" id="4_mn1b0"]
-[ext_resource type="PackedScene" uid="uid://dpv5gjrjgqvf4" path="res://assets/scenes/managers/pool_char.tscn" id="5_eicm5"]
+[ext_resource type="PackedScene" uid="uid://dpv5gjrjgqvf4" path="res://assets/scenes/managers/pool.tscn" id="5_eicm5"]
+[ext_resource type="PackedScene" uid="uid://chcs6d4tj4bk0" path="res://assets/scenes/characters/general/attack/projectile_spawner.tscn" id="6_jss2q"]
 
 [node name="TestFollowingScene" type="Node2D" unique_id=1613623401]
 
-[node name="Player" parent="." unique_id=901694903 instance=ExtResource("1_uub35")]
+[node name="Player" parent="." unique_id=901694903 node_paths=PackedStringArray("projectile_spawner") instance=ExtResource("1_uub35")]
 position = Vector2(152, 252)
+projectile_spawner = NodePath("../ProjectileSpawner")
 
 [node name="EnemySpawner" parent="." unique_id=758992041 node_paths=PackedStringArray("player", "pool") instance=ExtResource("2_eicm5")]
 follow_player = true
@@ -28,3 +30,8 @@ pool = NodePath("../PoolFollowers")
 [node name="PoolEnemies" parent="." unique_id=184071942 instance=ExtResource("5_eicm5")]
 
 [node name="PoolFollowers" parent="." unique_id=1948281119 instance=ExtResource("5_eicm5")]
+
+[node name="ProjectileSpawner" parent="." unique_id=2008128645 node_paths=PackedStringArray("pool") instance=ExtResource("6_jss2q")]
+pool = NodePath("../PoolProjectiles")
+
+[node name="PoolProjectiles" parent="." unique_id=1097878610 instance=ExtResource("5_eicm5")]

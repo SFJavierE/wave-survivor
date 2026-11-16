@@ -11,7 +11,7 @@ enum EnemyStates
 
 @onready var hit_timer: Timer = $HitTimer
 
-const SPEED = 120.0
+const SPEED = 100.0
 const DISTANCE_TO_STOP = 20.0
 
 var player : player_ = null

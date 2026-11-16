@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var PLAYER: player_ = $"."
 @export var speed : float = 200.0
+@export var projectile_spawner : projectilespawner
 
 var followers_manager : followersmanager
 
@@ -25,3 +26,4 @@ func _physics_process(_delta: float) -> void:
 func _on_area_body_entered(body_: Node2D) -> void:
 	if body_ is follower_:
 		followers_manager.add_follower(body_)
+		projectile_spawner.connect_char_signal(body_)
